@@ -9,6 +9,13 @@ public class sac {
   
     public static void main(String args[]) {
         
+        String did, dname, especialidad;
+       String pid, pname;
+       String cid, fechaYhora, motivo;
+       
+      
+
+        
      String Username;
     String Password;
 
@@ -33,7 +40,7 @@ public class sac {
     } else if (password.equals(Password)) {
         System.out.println("Usuario invalido!");
     } else {
-        System.out.println("Contraseña y usuario invalido!");
+        System.out.println("Contraseña y usuario invalidos!");
     }
 
         //System.out.println("--------------------------------------------------------------------------------");
@@ -62,7 +69,7 @@ public class sac {
                     s1 = 1;
                     while (s1 == 1) {
                         System.out.println("Escoge una opción: \n");
-                        System.out.println("1. Mostrar lista de doctores");
+                        System.out.println("1. Mostrar lista de doctores\n 2. Agregar doctor.");
                         c1 = input.nextInt();
                         switch (c1) {
                             case 1: {
@@ -79,18 +86,29 @@ public class sac {
                             }
                             case 2: {
                                 
-                                try (PrintWriter writer = new PrintWriter(new File("C:\\Users\\Admin\\Documents\\NetBeansProjects\\SAC\\doctores.csv"))) {
+                                 Scanner inputdoctor = new Scanner(System.in);
+                                    System.out.print("Introduce ID:-");
+                                    did = inputdoctor.nextLine();
+                                    System.out.print("Nombre completo:-");
+                                    dname = inputdoctor.nextLine();
+                                    System.out.print("Especialidad:-");
+                                    especialidad = inputdoctor.nextLine();
+                                    
+                                 File archivoDocs = new File("C:\\Users\\Admin\\Documents\\NetBeansProjects\\SAC\\doctores.csv");   
+                                try (PrintWriter writer = new PrintWriter(archivoDocs)) {
+                                     
+                                FileWriter fw = new FileWriter(archivoDocs.getAbsoluteFile(), true);
                                 StringBuilder sb = new StringBuilder();
-                                String str = "DR-01 Holaaaa, DR-02, DR-03";
+                                String str =  did + "," + dname + "," + especialidad ;
                                 String []splitted_str = str.split(splitBy);
                                 for (String string : splitted_str) {
-                                    sb.append(string).append("\n"); 
+                                    sb.append(string).append(splitBy);
                                 }
                                 writer.write(sb.toString());
 
                                 System.out.println("Doctor registrado.");
 
-                            } catch (FileNotFoundException e) {
+                            } catch (IOException e) {
                                 System.out.println(e.getMessage());
                             }
                             break;
@@ -109,7 +127,7 @@ public class sac {
                     s2 = 1;
                     while (s2 == 1) {
                         System.out.println("Escoge una opción: \n");
-                        System.out.println("1. Mostrar lista de pacientes");
+                        System.out.println("1. Mostrar lista de pacientes\n 2. Agregar paciente");
                         c1 = input.nextInt();
                         switch (c1) {
                             case 1: {
@@ -117,7 +135,7 @@ public class sac {
                                     BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\Users\\Admin\\Documents\\NetBeansProjects\\SAC\\pacientes.csv"), "UTF-8"));  
                                     while ((line = br.readLine()) != null) {  
                                         String[] pacientes = line.split(splitBy);    // use comma as separator  
-                                        System.out.println("Pacientes: [ID: " + pacientes[0] + ", Nombre completo: " + pacientes[1]);
+                                        System.out.println("Pacientes: [ID: " + pacientes[0] + ", Nombre completo: " + pacientes[1] );
                                     }
                                 }
                                           
@@ -125,7 +143,34 @@ public class sac {
                                     e.printStackTrace();  
                                 }
                             break;
-                            }                                   
+                            } 
+                            case 2: {Scanner inputpaciente = new Scanner(System.in);
+                                    System.out.print("Introduce ID:-");
+                                    pid = inputpaciente.nextLine();
+                                    System.out.print("Nombre completo:-");
+                                    pname = inputpaciente.nextLine();
+
+                                    
+                                 File archivoPacientes = new File("C:\\Users\\Admin\\Documents\\NetBeansProjects\\SAC\\pacientes.csv");   
+                                try (PrintWriter writer = new PrintWriter(archivoPacientes)) {
+                                     
+                                FileWriter fw = new FileWriter(archivoPacientes.getAbsoluteFile(), true);
+                                StringBuilder sb = new StringBuilder();
+                                String str =  pid + "," + pname  ;
+                                String []splitted_str = str.split(splitBy);
+                                for (String string : splitted_str) {
+                                    sb.append(string).append(splitBy);
+                                }
+                                writer.write(sb.toString());
+
+                                System.out.println("Paciente registrado.");
+
+                            } catch (IOException e) {
+                                System.out.println(e.getMessage());
+                            }
+                            break;
+                            }
+                         
                         }
                     System.out.println("\nRetrocede presionando 1 y 0 para regresar al menú principal.");
                     s2 = input.nextInt();
@@ -158,6 +203,34 @@ public class sac {
                                         }
                                     break;
                                     }
+                                case 2:{Scanner inputcita = new Scanner(System.in);
+                                    System.out.print("Introduce ID:-");
+                                    cid = inputcita.nextLine();
+                                    System.out.print("Fecha y hora:-");
+                                    fechaYhora = inputcita.nextLine();
+                                    System.out.print("Motivo:-");
+                                    motivo = inputcita.nextLine();
+
+                                    
+                                 File archivoCitas = new File("C:\\Users\\Admin\\Documents\\NetBeansProjects\\SAC\\citas.csv");   
+                                try (PrintWriter writer = new PrintWriter(archivoCitas)) {
+                                     
+                                FileWriter fw = new FileWriter(archivoCitas.getAbsoluteFile(), true);
+                                StringBuilder sb = new StringBuilder();
+                                String str =  cid + "," + fechaYhora + "," + "motivo";
+                                String []splitted_str = str.split(splitBy);
+                                for (String string : splitted_str) {
+                                    sb.append(string).append(splitBy);
+                                }
+                                writer.write(sb.toString());
+
+                                System.out.println("Cita registrada.");
+
+                            } catch (IOException e) {
+                                System.out.println(e.getMessage());
+                            }
+                            break;
+                            }
                             }
                             System.out.println("\nRetrocede presionando 1 y 0 para regresar al menú principal.");
                             s3 = input.nextInt();
