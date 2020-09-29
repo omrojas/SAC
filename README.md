@@ -4,6 +4,8 @@ Sistema de administración de citas para un consultorio clínico.
 # Uso del programa
 Este programa es un MVP. Debido a que no pude realizar toda la configuración de la forma solicitada encontré una forma diferente de lograrlo.
 Para agregar nuevo registros basta con agregarlos en los archivos CSV y entonces el sistema podrá leerlos y mostrarlos.
+
+Se añadió la funcionalidad de entrar con un usuario y contraseña (Username: root Pass: admin)
 # Créditos
 Omar Alberto Rojas Martínez
 # Licencia
